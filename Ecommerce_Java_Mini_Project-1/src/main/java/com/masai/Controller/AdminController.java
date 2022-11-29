@@ -18,13 +18,13 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@PostMapping("/admin")
-	public ResponseEntity<String> createBookHandler(@RequestBody Admin admin) {
+	public ResponseEntity<String> RegisterAdminHandler(@RequestBody Admin admin) {
 		
 		String savedAdmin="";
 		try {
 			savedAdmin = adminService.RegisterAsAdmin(admin);
 		} catch (AdminException e) {
-			e.printStackTrace();
+			savedAdmin = e.getMessage();
 		}
 		return new ResponseEntity<String>(savedAdmin,HttpStatus.CREATED);
 		
