@@ -11,6 +11,7 @@ public class Customer {
 	private String CustomerId;
 	private String CustomerFirstName;
 	private String CustomerLastName;
+	private String CustomerPhone;
 	private String CustomerEmail;
 	private String CustomerPassword;
 
@@ -23,17 +24,21 @@ public class Customer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(String customerId, String customerFirstName, String customerLastName, String customerEmail,
-			String customerPassword, Address customerAddress) {
+	
+
+	public Customer(String customerId, String customerFirstName, String customerLastName, String customerPhone,
+			String customerEmail, String customerPassword, Address customerAddress) {
 		super();
 		CustomerId = customerId;
 		CustomerFirstName = customerFirstName;
 		CustomerLastName = customerLastName;
+		CustomerPhone = customerPhone;
 		CustomerEmail = customerEmail;
 		CustomerPassword = customerPassword;
 		this.customerAddress = customerAddress;
 	}
-	
+
+
 
 	public String getCustomerId() {
 		return CustomerId;
@@ -81,6 +86,18 @@ public class Customer {
 
 	public void setCustomerAddress(Address customerAddress) {
 		this.customerAddress = customerAddress;
+	}
+
+
+
+	public String getCustomerPhone() {
+		return CustomerPhone;
+	}
+
+
+
+	public void setCustomerPhone(String customerPhone) {
+		CustomerPhone = customerPhone;
 	}
 
 	
