@@ -1,8 +1,13 @@
 package com.masai.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Admin {
 
-	private Integer adminId;
+	@Id
+	private String adminId;
 	private String FirstName;
 	private String LastName;
 	private String email;
@@ -12,7 +17,7 @@ public class Admin {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Admin(Integer adminId, String firstName, String lastName, String email, String password) {
+	public Admin(String adminId, String firstName, String lastName, String email, String password) {
 		super();
 		this.adminId = adminId;
 		FirstName = firstName;
@@ -21,11 +26,11 @@ public class Admin {
 		this.password = password;
 	}
 
-	public Integer getAdminId() {
+	public String getAdminId() {
 		return adminId;
 	}
 
-	public void setAdminId(Integer adminId) {
+	public void setAdminId(String adminId) {
 		this.adminId = adminId;
 	}
 
