@@ -16,5 +16,5 @@ public interface CustomerService {
 	
 	public List<Product> ViewAllProduct()throws ProductException;
 	
-
+    public List<Product> ViewAllProductByCategory(String productCategory)throws ProductException;
 }

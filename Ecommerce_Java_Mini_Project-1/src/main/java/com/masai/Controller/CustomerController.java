@@ -57,5 +57,14 @@ public class CustomerController{
 		return new ResponseEntity<List<Product>>(Products,HttpStatus.OK);
 	}
 	
+	@GetMapping("/ProductByCategory/{productCategory}")
+	public ResponseEntity<List<Product>> ViewProductByCategory(@PathVariable("productCategory") String productCategory) throws ProductException{
+		
+		List<Product> byCategory = customerService.ViewAllProductByCategory(productCategory);
+		return new ResponseEntity<List<Product>>(byCategory,HttpStatus.OK);
+		
+	}
+	
+	
 }
 

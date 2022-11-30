@@ -21,7 +21,7 @@ public class AdminServiceImpl implements AdminService{
 	private AdminRepo adminRepo;
 	
 	@Autowired
-	private ProductRepo productRepo;
+	private ProductRepo AdminproductRepo;
 	
 	
 	
@@ -43,12 +43,12 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public String AddProduct(Product product) throws ProductException {
 		String message  = "Product Already Registered Please add Different Product";
-		Optional<Product> opt = productRepo.findById(product.getProductId());
+		Optional<Product> opt = AdminproductRepo.findById(product.getProductId());
 		if(opt.isPresent()) {
 			throw new ProductException("Product Already Registered Please add Different Product");
 		}
 		else {
-			productRepo.save(product);
+			AdminproductRepo.save(product);
 			message = "Product Added By Admin Succesfully";
 		}
 		return message;

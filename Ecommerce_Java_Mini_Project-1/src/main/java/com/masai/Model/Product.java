@@ -76,6 +76,13 @@ public class Product {
 	public void setProductPrice(Integer productPrice) {
 		this.productPrice = productPrice;
 	}
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + ", productManufacturer="
+				+ productManufacturer + ", productCategory=" + productCategory + ", productQuantity=" + productQuantity
+				+ ", productPrice=" + productPrice + "]";
+	}
 	
 	
 	

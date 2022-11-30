@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService{
 	private CustomerCurrentSessionRepo currentRepo;
 	
 	@Autowired
-	private ProductRepo productRepo;
+	private ProductRepo CustomerproductRepo;
 
 	@Override
 	public String RegisterAsCustomer(Customer customer) throws CustomerException {
@@ -76,7 +76,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public List<Product> ViewAllProduct() throws ProductException {
 		
-		List<Product> products = productRepo.findAll();
+		List<Product> products = CustomerproductRepo.findAll();
 		
 		if(products.size()!=0) {
 			return products;
@@ -86,6 +86,19 @@ public class CustomerServiceImpl implements CustomerService{
 			throw new ProductException("No Product Is been Added Let the Admin Add some Product First");
 		}
 		
+	}
+
+	@Override
+	public List<Product> ViewAllProductByCategory(String productCategory) throws ProductException {
+		List<Product> categoryProduct = CustomerproductRepo.findByProductCategory(productCategory);
+		
+		if(categoryProduct.size()==0) {
+			throw new ProductException("No Product Found On this Category");
+			
+		}
+		else {
+			return categoryProduct;
+		}
 	}	
 	
 	
