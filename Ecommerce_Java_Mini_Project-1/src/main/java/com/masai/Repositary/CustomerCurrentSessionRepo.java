@@ -6,6 +6,5 @@ import com.masai.Model.CustomerCurrentUserSession;
 
 public interface CustomerCurrentSessionRepo extends JpaRepository<CustomerCurrentUserSession, String>{
 
-	public CustomerCurrentUserSession findByUuid(String Uuid);
-	
+	public CustomerCurrentUserSession findByUuid(String uuid);
 }

@@ -9,7 +9,7 @@ public class CustomerCurrentUserSession {
 
 	@Id
 	@Column(unique = true)
-	private String UserId;
+	private String userId;
 	
 	private String uuid;
 	
@@ -17,23 +17,22 @@ public class CustomerCurrentUserSession {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-
 	public CustomerCurrentUserSession(String userId, String uuid) {
 		super();
-		UserId = userId;
+		this.userId = userId;
 		this.uuid = uuid;
 	}
-
-
+	
 
 	public String getUserId() {
-		return UserId;
+		return userId;
 	}
 
+
 	public void setUserId(String userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
+
 
 	public String getUuid() {
 		return uuid;
@@ -42,7 +41,5 @@ public class CustomerCurrentUserSession {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
-	
-	
 	
 }
