@@ -1,6 +1,5 @@
 package com.masai.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.masai.Exception.CartException;
 import com.masai.Exception.CustomerException;
 import com.masai.Exception.ProductException;
 import com.masai.Model.Customer;
@@ -77,8 +76,17 @@ public class CustomerController{
 		
 		Product productbyName = customerService.viewProductByName(productName);
 		return new ResponseEntity<Product>(productbyName,HttpStatus.OK);
-		
+	
 	}
+	
+	@PostMapping("/cart/{productName}/{cartQuantity}")
+	public ResponseEntity<String> viewAlltoCart(@PathVariable("productName") String productName,@PathVariable("cartQuantity") Integer cartQString) throws CartException{
+		
+		String addtocart = customerService.addItemtoCart(productName, cartQString);
+		
+		return new ResponseEntity<String>(addtocart,HttpStatus.CREATED);
+	}
+	
 	
 	
 }

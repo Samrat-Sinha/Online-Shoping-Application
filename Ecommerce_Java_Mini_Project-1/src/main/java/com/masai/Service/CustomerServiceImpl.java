@@ -7,12 +7,19 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.masai.Exception.CartException;
+
 import com.masai.Exception.CustomerException;
 import com.masai.Exception.ProductException;
+import com.masai.Model.Cart;
+
 import com.masai.Model.Customer;
 import com.masai.Model.CustomerCurrentUserSession;
 import com.masai.Model.LoginCustomerDTO;
 import com.masai.Model.Product;
+import com.masai.Repositary.CartRepo;
+import com.masai.Model.ProductDTO;
+
 import com.masai.Repositary.CustomerCurrentSessionRepo;
 import com.masai.Repositary.CustomerRepo;
 import com.masai.Repositary.ProductRepo;
@@ -30,6 +37,9 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Autowired
 	private ProductRepo CustomerproductRepo;
+	
+	@Autowired
+	CartRepo cartRepo;
 
 	@Override
 	public String RegisterAsCustomer(Customer customer) throws CustomerException {
@@ -126,6 +136,29 @@ public class CustomerServiceImpl implements CustomerService{
 		}
 		else {
 			throw new ProductException("This Product is not available");
+		}
+		
+	}
+
+	@Override
+	public String addItemtoCart(String productName, Integer cartQuantity) throws CartException {
+		
+	
+		Product productAvailable = CustomerproductRepo.findByproductName(productName);
+		
+		
+		if(productAvailable!=null) {
+			
+			String idcart = RandomString.make(8);
+			Integer finalPrice = cartQuantity * productAvailable.getProductPrice();
+			Cart cartToProduct = new Cart(idcart, cartQuantity, new ProductDTO(productAvailable.getProductName(),productAvailable.getProductManufacturer(),finalPrice));
+                cartRepo.save(cartToProduct);
+                String message = "Product Added to the Cart Successfully";
+                return message;
+               
+		}
+		else {
+			throw new CartException("This Product is not available");
 		}
 		
 	}	

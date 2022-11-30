@@ -2,8 +2,11 @@ package com.masai.Service;
 
 import java.util.List;
 
+import com.masai.Exception.CartException;
+//import com.masai.Exception.CartException;
 import com.masai.Exception.CustomerException;
 import com.masai.Exception.ProductException;
+
 import com.masai.Model.Customer;
 import com.masai.Model.LoginCustomerDTO;
 import com.masai.Model.Product;
@@ -22,5 +25,6 @@ public interface CustomerService {
     
     public Product viewProductByName(String productName)throws ProductException;
     
+    public String addItemtoCart(String productName,Integer cartQuantity)throws CartException;
     
 }

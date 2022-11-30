@@ -44,5 +44,14 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<GlobalErrorDetails>(err,HttpStatus.BAD_GATEWAY);
 	}
 	
+	@ExceptionHandler(CartException.class)
+	public ResponseEntity<GlobalErrorDetails> CartDetailsInvalidHandler(CartException cee,WebRequest req){
+		GlobalErrorDetails err = new GlobalErrorDetails();
+		err.setTimestamp(LocalDateTime.now());
+		err.setMessage(cee.getMessage());
+		err.setDescription(req.getDescription(false));
+		
+		return new ResponseEntity<GlobalErrorDetails>(err,HttpStatus.BAD_GATEWAY);
+	}
 	
 }
