@@ -1,5 +1,6 @@
 package com.masai.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -99,6 +100,34 @@ public class CustomerServiceImpl implements CustomerService{
 		else {
 			return categoryProduct;
 		}
+	}
+
+	@Override
+	public List<Product> ViewLowToHighByProductPrice()throws ProductException{
+       
+		List<Product> LowtoHighbyPrice = CustomerproductRepo.findAll();
+		
+		if(LowtoHighbyPrice.size()==0) {
+			throw new ProductException("No Product Is been Added Let the Admin Add some Product First");
+		}
+		else {
+			Collections.sort(LowtoHighbyPrice,(a,b)->(a.getProductPrice()>b.getProductPrice()?1:-1));
+			return LowtoHighbyPrice;
+		}
+		
+	}
+
+	@Override
+	public Product viewProductByName(String productName) throws ProductException {
+		Product byName = CustomerproductRepo.findByproductName(productName);
+		
+		if(byName!=null) {
+			return byName;
+		}
+		else {
+			throw new ProductException("This Product is not available");
+		}
+		
 	}	
 	
 	

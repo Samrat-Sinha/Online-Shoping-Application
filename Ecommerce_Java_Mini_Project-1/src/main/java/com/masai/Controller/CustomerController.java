@@ -19,7 +19,6 @@ import com.masai.Exception.ProductException;
 import com.masai.Model.Customer;
 import com.masai.Model.LoginCustomerDTO;
 import com.masai.Model.Product;
-//import com.masai.Model.LoginDTO;
 import com.masai.Service.CustomerService;
 
 @RestController
@@ -62,6 +61,22 @@ public class CustomerController{
 		
 		List<Product> byCategory = customerService.ViewAllProductByCategory(productCategory);
 		return new ResponseEntity<List<Product>>(byCategory,HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/Low-Price")
+	public ResponseEntity<List<Product>> ViewLowtoHighByProductPriceHandler() throws ProductException{
+		
+		List<Product> lowProductPrice =  customerService.ViewLowToHighByProductPrice();
+		
+		return new ResponseEntity<List<Product>>(lowProductPrice,HttpStatus.OK);
+	}
+	
+	@GetMapping("/ProductByName/{productName}")
+	public ResponseEntity<Product> viewProductByName(@PathVariable("productName") String productName)throws ProductException{
+		
+		Product productbyName = customerService.viewProductByName(productName);
+		return new ResponseEntity<Product>(productbyName,HttpStatus.OK);
 		
 	}
 	
