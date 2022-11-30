@@ -41,5 +41,10 @@ public class CustomerCurrentUserSession {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
+
+	@Override
+	public String toString() {
+		return "CustomerCurrentUserSession [userId=" + userId + ", uuid=" + uuid + "]";
+	}
 	
 }

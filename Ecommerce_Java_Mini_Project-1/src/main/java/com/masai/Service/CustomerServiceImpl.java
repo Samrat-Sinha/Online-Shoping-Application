@@ -1,16 +1,20 @@
 package com.masai.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.Exception.CustomerException;
+import com.masai.Exception.ProductException;
 import com.masai.Model.Customer;
 import com.masai.Model.CustomerCurrentUserSession;
 import com.masai.Model.LoginCustomerDTO;
+import com.masai.Model.Product;
 import com.masai.Repositary.CustomerCurrentSessionRepo;
 import com.masai.Repositary.CustomerRepo;
+import com.masai.Repositary.ProductRepo;
 
 import net.bytebuddy.utility.RandomString;
 
@@ -23,7 +27,8 @@ public class CustomerServiceImpl implements CustomerService{
 	@Autowired
 	private CustomerCurrentSessionRepo currentRepo;
 	
-	
+	@Autowired
+	private ProductRepo productRepo;
 
 	@Override
 	public String RegisterAsCustomer(Customer customer) throws CustomerException {
@@ -65,9 +70,23 @@ public class CustomerServiceImpl implements CustomerService{
 		}
 		else {
 			throw new CustomerException("Please Enter The Correct Password");
+		}	
+	}
+
+	@Override
+	public List<Product> ViewAllProduct() throws ProductException {
+		
+		List<Product> products = productRepo.findAll();
+		
+		if(products.size()!=0) {
+			return products;
+			
+		}
+		else {
+			throw new ProductException("No Product Is been Added Let the Admin Add some Product First");
 		}
 		
-		
-		
 	}	
+	
+	
 }
